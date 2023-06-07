@@ -6,5 +6,5 @@ interface RobotCommand
 }
 interface IRobotCommand
 {
-    void Run();
+    void Run(Robot robot);
 }
