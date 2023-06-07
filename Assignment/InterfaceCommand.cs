@@ -2,7 +2,7 @@
 
 interface RobotCommand
 {
-    void Run(Robot robot); // Interfaces are public and abstract by default.
+    void Run(Robot robot);
 }
 interface IRobotCommand
 {
