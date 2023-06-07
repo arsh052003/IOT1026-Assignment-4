@@ -4,32 +4,32 @@ abstract class RobotCommand
 {
     public abstract void Run(Robot robot);
 }
-class OffCommand : IRobotCommand
+class OffCommand : RobotCommand
 {
-    public void Run(Robot robot) => robot.IsPowered = false;
+    public override void Run(Robot robot) => robot.IsPowered = false;
 }
 
-class OnCommand : IRobotCommand
+class OnCommand : RobotCommand
 {
-    public void Run(Robot robot) => robot.IsPowered = true;
+    public override void Run(Robot robot) => robot.IsPowered = true;
 }
 
-class WestCommand : IRobotCommand
+class WestCommand : RobotCommand
 {
-    public void Run(Robot robot) { if (robot.IsPowered) robot.X--; }
+    public override void Run(Robot robot) { if (robot.IsPowered) robot.X--; }
 }
 
-class EastCommand : IRobotCommand
+class EastCommand : RobotCommand
 {
-    public void Run(Robot robot) { if (robot.IsPowered) robot.X++; }
+    public override void Run(Robot robot) { if (robot.IsPowered) robot.X++; }
 }
 
-class SouthCommand : IRobotCommand
+class SouthCommand : RobotCommand
 {
-    public void Run(Robot robot) { if (robot.IsPowered) robot.Y--; }
+    public override void Run(Robot robot) { if (robot.IsPowered) robot.Y--; }
 }
 
-class NorthCommand : IRobotCommand
+class NorthCommand : RobotCommand
 {
-    public void Run(Robot robot) { if (robot.IsPowered) robot.Y++; }
+    public override void Run(Robot robot) { if (robot.IsPowered) robot.Y++; }
 }
