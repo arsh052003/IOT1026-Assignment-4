@@ -4,7 +4,7 @@ using Assignment.InterfaceCommand;
 
 namespace Assignment;
 
-class Robot
+public class Robot
 {
     // These are properties, you can replace these with traditional getters/setters if you prefer.
     public int NumCommands { get; }
@@ -41,25 +41,22 @@ class Robot
     }
 
     /// <summary>
-    ///
+    /// Runs the loaded commands on the robot.
     /// </summary>
-    /// <throws> </throws>
     public void Run()
     {
-        // Is this throw a good design choice? Can you think of any alternatives?
-        if (!_commands.Any()) throw new InvalidOperationException("No commands have been loaded!");
-        foreach (var command in _commands)
+        for (var i = 0; i < _commandsLoaded; ++i)
         {
-            command.Run(this);
+            _commands[i].Run(this);
             Console.WriteLine(this);
         }
     }
 
     /// <summary>
-    ///
+    /// Loads a command into the robot.
     /// </summary>
-    /// <param name="command"></param>
-    /// <returns></returns>
+    /// <param name="command">The command to load.</param>
+    /// <returns><c>true</c> if the command was successfully loaded; otherwise, <c>false</c>.</returns>
     public bool LoadCommand(IRobotCommand command)
     {
         if (_commandsLoaded >= NumCommands)
