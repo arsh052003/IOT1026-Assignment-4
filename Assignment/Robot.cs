@@ -1,5 +1,6 @@
 ﻿// Change to 'using Assignment.InterfaceCommand' when you are ready to test your interface implementation
 using Assignment.AbstractCommand;
+using Assignment.InterfaceCommand;
 
 namespace Assignment;
 
@@ -15,7 +16,7 @@ class Robot
     // An array is not the preferred data structure here.
     // You will get bonus marks if you replace the array with the preferred data structure
     // Hint: It is NOT a list either,
-    private readonly RobotCommand[] _commands;
+    private readonly IRobotCommand[] _commands;
     private int _commandsLoaded = 0;
 
     public override string ToString()
@@ -35,7 +36,7 @@ class Robot
     /// <param name="numCommands">The maximum number of commands the robot can store</param>
     public Robot(int numCommands)
     {
-        _commands = new RobotCommand[numCommands];
+        _commands = new IRobotCommand[numCommands];
         NumCommands = numCommands;
     }
 
@@ -59,7 +60,7 @@ class Robot
     /// </summary>
     /// <param name="command"></param>
     /// <returns></returns>
-    public bool LoadCommand(RobotCommand command)
+    public bool LoadCommand(IRobotCommand command)
     {
         if (_commandsLoaded >= NumCommands)
             return false;
