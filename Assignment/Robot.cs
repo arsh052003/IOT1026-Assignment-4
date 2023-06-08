@@ -17,6 +17,7 @@ public class Robot
     // You will get bonus marks if you replace the array with the preferred data structure
     // Hint: It is NOT a list either,
     private readonly IRobotCommand[] _commands;
+    //private readonly Queue<IRobotCommand> _commands;
     private int _commandsLoaded = 0;
 
     public override string ToString()
@@ -37,6 +38,7 @@ public class Robot
     public Robot(int numCommands)
     {
         _commands = new IRobotCommand[numCommands];
+        //_commands = new Queue<IRobotCommand>(numCommands);
         NumCommands = numCommands;
     }
 
@@ -50,6 +52,16 @@ public class Robot
             _commands[i].Run(this);
             Console.WriteLine(this);
         }
+        // if (_commands.Count == 0)
+        //     throw new InvalidOperationException("No commands have been loaded!");
+
+        // while (_commands.Count > 0)
+        // {
+        //     var command = _commands.Dequeue();
+        //     command.Run(this);
+        //     Console.WriteLine(this);
+        // }
+
     }
 
     /// <summary>
@@ -63,5 +75,12 @@ public class Robot
             return false;
         _commands[_commandsLoaded++] = command;
         return true;
+
+        //     if (_commands.Count >= NumCommands)
+        //             return false;
+
+        //         _commands.Enqueue(command);
+        //         return true;
     }
+
 }

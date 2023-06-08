@@ -35,12 +35,12 @@ public class NorthCommand : IRobotCommand
     public void Run(Robot robot) { if (robot.IsPowered) robot.Y++; }
 }
 
-public class NortEastCommand : IRobotCommand
+public class NorthEastCommand : IRobotCommand
 {
     public void Run(Robot robot) { if (robot.IsPowered) robot.Y++; robot.X++; }
 }
 
-public class NortWestCommand : IRobotCommand
+public class NorthWestCommand : IRobotCommand
 {
     public void Run(Robot robot) { if (robot.IsPowered) robot.Y++; robot.X--; }
 }
