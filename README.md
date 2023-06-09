@@ -3,9 +3,5 @@
 [![codecov](https://codecov.io/gh/arsh052003/IOT1026-Assignment-4/branch/main/graph/badge.svg?token=K5SWAZLGZ1)](https://codecov.io/gh/arsh052003/IOT1026-Assignment-4)
 <img width="508" alt="Screen Shot 2023-06-10 at 03 15 21" src="https://github.com/arsh052003/IOT1026-Assignment-4/assets/122691385/d40c5949-bcb4-455c-a332-0787f5431aaf">
 
-# IOT1026-Assignment-4
-Write a description of the project here and don't forget to update the badges.  
-
-[Assignment Instructions](docs/instructions.md)  
-[How to start coding](docs/how-to-use.md)  
-[How to update status badges](docs/how-to-update-badges.md)
+This projects contains a Robot class represents a robot with properties such as its position, power state, and the ability to store and execute commands. This class includes a default constructor(sets to max number of commands as 6) and another constructor that take int paramater to allow specifying the maximum number of commands the robot can store. The Run method with executes the loaded commands on the robot by iterating over the _commands array and calling the Run method and display robot for each command. The LoadCommand will insert a command into the robot by adding it to the _commands array. Returns true if the command was successfully loaded, or false if not able to.
+The RobotTester class is used test the robot class by taking user input and converting them into commands, loading the commands into a Robot instance. The class includes methods like Giveinstructions to prompt the user for command strings and load them into the robot, and ExecuteCommands to execute the loaded commands on the robot.
