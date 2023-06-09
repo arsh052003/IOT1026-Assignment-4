@@ -177,5 +177,22 @@ namespace AssignmentTest
             Assert.AreEqual(robotTester.Robot.IsPowered, false);
 
         }
+
+        [TestMethod]
+        public void RobotTesterDeafultTest()
+        {
+            RobotTester robotTester = new();
+            robotTester.Robot.LoadCommand(new WestCommand());
+            robotTester.Robot.LoadCommand(new OnCommand());
+            robotTester.Robot.LoadCommand(new NorthCommand());
+            robotTester.Robot.LoadCommand(new NorthCommand());
+            robotTester.Robot.LoadCommand(new EastCommand());
+            robotTester.Robot.LoadCommand(new OffCommand());
+            robotTester.ExecuteCommands();
+            Assert.AreEqual(robotTester.Robot.X, 1);
+            Assert.AreEqual(robotTester.Robot.Y, 2);
+            Assert.AreEqual(robotTester.Robot.IsPowered, false);
+
+        }
     }
 }
