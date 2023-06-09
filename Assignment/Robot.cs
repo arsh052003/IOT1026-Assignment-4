@@ -1,9 +1,7 @@
 ﻿// Change to 'using Assignment.InterfaceCommand' when you are ready to test your interface implementation
-
 using Assignment.InterfaceCommand;
 
 namespace Assignment;
-
 public class Robot
 {
     // These are properties, you can replace these with traditional getters/setters if you prefer.
@@ -90,38 +88,46 @@ public class RobotTester
 {
     public Robot Robot { get; set; }
     //private Robot _robot;
-    //     // to avoid null warning
+    // to avoid null warning 
     private String? _userCommand;
     private IRobotCommand? _command;
 
     public RobotTester()
     {
+        //make a instance of Robot
         Robot = new Robot();
     }
     public RobotTester(Robot robot)
     {
         Robot = robot;
     }
+    //This method take user input and assigning commands to the robot object
     public void Giveinstructions()
     {
+        //To print a message based on user input
         Console.WriteLine("Give " + Robot.NumCommands + " commands to the robot. Possible commands are: ");
+        //possible commands that the user can enter
         Console.WriteLine("on\noff\nnoth\nsouth\neast\nwest");
         //Console.ReadLine();
+        //The Robot.NumCommand represents the maximum number of command the robot can store
         Console.WriteLine(Robot.NumCommands);
+        //To store the value
         int count = Robot.NumCommands;
+        //The execution starts from 1 to robot's number of command 
         for (var i = 1; i <= Robot.NumCommands; i++)
         {
             Console.Write($"Assign Command #" + i + ": ");
-
+            //Read the user's input command
             _userCommand = Console.ReadLine();
-
+            //if user's input is empty or whitespace
             if (string.IsNullOrWhiteSpace(_userCommand))
             {
+                //then it will print an error
                 Console.WriteLine("Invalid Command - try again");
                 i--; // Decrement i to repeat the current iteration
                 continue; // Skip loading the command
             }
-
+            //This statement check the user input and  assigns the appropriate command to the _command variable.
             switch (_userCommand.ToLower())
             {
                 case "west":
@@ -147,14 +153,14 @@ public class RobotTester
                     i--; // decreasing i to repeat loop
                     continue; // Skip loading the command
             }
-
+            // Load the created command into the robot
             Robot.LoadCommand(_command);
-
         }
     }
 
     public void ExecuteCommands()
     {
+        // Run the loaded commands on the robot
         Robot.Run();
     }
 }
