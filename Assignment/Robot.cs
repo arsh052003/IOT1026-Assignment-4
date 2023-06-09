@@ -1,5 +1,5 @@
 ﻿// Change to 'using Assignment.InterfaceCommand' when you are ready to test your interface implementation
-using Assignment.AbstractCommand;
+
 using Assignment.InterfaceCommand;
 
 namespace Assignment;
@@ -51,6 +51,7 @@ public class Robot
         {
             _commands[i].Run(this);
             Console.WriteLine(this);
+            ToString();
         }
         // if (_commands.Count == 0)
         //     throw new InvalidOperationException("No commands have been loaded!");
@@ -83,4 +84,76 @@ public class Robot
         //         return true;
     }
 
+}
+
+public class RobotTester
+{
+    private Robot _robot;
+    //     // to avoid null warning
+    private String? _userCommand;
+    private IRobotCommand? _command;
+
+    public RobotTester()
+    {
+        _robot = new Robot();
+    }
+    public RobotTester(Robot robot)
+    {
+        _robot = robot;
+    }
+    public void Giveinstructions()
+    {
+        Console.WriteLine("Give " + _robot.NumCommands + " commands to the robot. Possible commands are: ");
+        Console.WriteLine("on\noff\nnoth\nsouth\neast\nwest");
+        //Console.ReadLine();
+        Console.WriteLine(_robot.NumCommands);
+        int count = _robot.NumCommands;
+        for (var i = 1; i <= _robot.NumCommands; i++)
+        {
+            Console.Write($"Assign Command #" + i + ": ");
+
+            _userCommand = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(_userCommand))
+            {
+                Console.WriteLine("Invalid Command - try again");
+                i--; // Decrement i to repeat the current iteration
+                continue; // Skip loading the command
+            }
+
+            switch (_userCommand.ToLower())
+            {
+                case "west":
+                    _command = new WestCommand();
+                    break;
+                case "east":
+                    _command = new EastCommand();
+                    break;
+                case "south":
+                    _command = new SouthCommand();
+                    break;
+                case "north":
+                    _command = new NorthCommand();
+                    break;
+                case "on":
+                    _command = new OnCommand();
+                    break;
+                case "off":
+                    _command = new OffCommand();
+                    break;
+                default:
+                    Console.WriteLine("Invalid Command - try again");
+                    i--; // decreasing i to repeat loop
+                    continue; // Skip loading the command
+            }
+
+            _robot.LoadCommand(_command);
+
+        }
+    }
+
+    public void ExecuteCommands()
+    {
+        _robot.Run();
+    }
 }
