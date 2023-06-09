@@ -7,6 +7,7 @@ namespace AssignmentTest
     public class AssignmentTests
     {
         [TestMethod]
+        //Testing the properties and behavior of the Robot class
         public void PropertyTest()
         {
             Robot robot1 = new();
@@ -29,10 +30,10 @@ namespace AssignmentTest
             Assert.AreEqual(robot1.Y, 0);
             robot1.Y = -5;
             Assert.AreEqual(robot1.Y, -5);
-
         }
 
         [TestMethod]
+        // Testing the OnCommand class and its effect on the Robot
         public void OnCommandTest()
         {
             Robot testRobot = new Robot();
@@ -47,6 +48,7 @@ namespace AssignmentTest
         }
 
         [TestMethod]
+        // Testing the OffCommand class and its effect on the Robot
         public void OffCommandTest()
         {
             Robot testRobot = new();
@@ -60,6 +62,7 @@ namespace AssignmentTest
         }
 
         [TestMethod]
+        // Testing the WestCommand class and its effect on the Robot's X-coordinate
         public void MoveWestCommandTest()
         {
             Robot testRobot = new Robot();
@@ -76,6 +79,7 @@ namespace AssignmentTest
         }
 
         [TestMethod]
+        // Testing the NorthCommand class and its effect on the Robot's Y-coordinate
         public void MoveNorthCommandTest()
         {
             Robot testRobot = new Robot();
@@ -91,22 +95,29 @@ namespace AssignmentTest
             Assert.AreEqual(testRobot.Y, 2);
         }
         [TestMethod]
+        // Testing the EastCommand class and its effect on the Robot's X-coordinate
         public void MoveEastCommandTest()
         {
             Robot testRobot = new Robot();
+            //Checking if robot is set to 0 on X-coordinate.
             Assert.AreEqual(testRobot.X, 0);
+            //Loading the EastCommand into robot's command list
             testRobot.LoadCommand(new EastCommand());
+            // Running the loaded commands
             testRobot.Run();
             // Robot is powered off by default
             Assert.AreEqual(testRobot.X, 0); // Robot should not move if it isn't turned on
             testRobot.IsPowered = true;
             testRobot.Run();
+            //Checking if the robot's X-coordinate is incremented by 1
             Assert.AreEqual(testRobot.X, 1);
         }
         [TestMethod]
+        // Testing the SouthCommand class and its effect on the Robot's Y-coordinate
         public void MoveSouthCommandTest()
         {
             Robot testRobot = new Robot();
+            //Checking if robot is set to 0 on Y-coordinate.
             Assert.AreEqual(testRobot.Y, 0);
             testRobot.LoadCommand(new SouthCommand());
             testRobot.Run();
@@ -114,20 +125,27 @@ namespace AssignmentTest
             Assert.AreEqual(testRobot.Y, 0); // Robot should not move if it isn't turned on
             testRobot.IsPowered = true;
             testRobot.Run();
+            //Checking if the robot's Y-coordinate is decrease by 1
             Assert.AreEqual(testRobot.Y, -1);
         }
         [TestMethod]
+        // Testing the NewCommand class and its effect on the Robot's X and Y coordinate
         public void NewCommandTest()
         {
             Robot testRobot = new Robot();
+            //Checking if the robot's Y-coordinate is set to 0
             Assert.AreEqual(testRobot.Y, 0);
+            //Checking if the robot's X-coordinate is set to 0
             Assert.AreEqual(testRobot.X, 0);
             testRobot.LoadCommand(new NorthEastCommand());
             testRobot.IsPowered = true;
             testRobot.Run();
+            //Checking if the robot's Y-coordinate is increase by 1
             Assert.AreEqual(testRobot.Y, 1);
+            //Checking if the robot's X-coordinate is increase by 1
             Assert.AreEqual(testRobot.X, 1);
 
+            // The following code blocks test different NewCommand classes in a similar manner
             Robot testRobot1 = new Robot();
             testRobot1.LoadCommand(new NorthWestCommand());
             testRobot1.IsPowered = true;
@@ -148,22 +166,26 @@ namespace AssignmentTest
             testRobot3.Run();
             Assert.AreEqual(testRobot3.Y, -1);
             Assert.AreEqual(testRobot3.X, -1);
-
         }
 
         [TestMethod]
+        // Testing the behavior of overloading commands in the Robot class
         public void OverLoadTest()
         {
             Robot testRobot = new Robot(2);
+            // Loading the OnCommand into the robot's command list
             testRobot.LoadCommand(new OnCommand());
+            // Loading the OffCommand into the robot's command list
             testRobot.LoadCommand(new OffCommand());
             Assert.AreEqual(testRobot.LoadCommand(new OnCommand()), false);
         }
         [TestMethod]
+        //Testing the RobotTester class
         public void RobotTesterTest()
         {
+            // Creating a new Robot object
             Robot robot = new(6);
-
+            //Loading commands manually since console.readline is not working in Test class
             robot.LoadCommand(new WestCommand());
             robot.LoadCommand(new OnCommand());
             robot.LoadCommand(new NorthCommand());
@@ -175,11 +197,11 @@ namespace AssignmentTest
             Assert.AreEqual(robotTester.Robot.X, 1);
             Assert.AreEqual(robotTester.Robot.Y, 2);
             Assert.AreEqual(robotTester.Robot.IsPowered, false);
-
         }
 
         [TestMethod]
-        public void RobotTesterDeafultTest()
+        //Testing the defaultRobotTester class
+        public void RobotTesterDefaultTest()
         {
             RobotTester robotTester = new();
             robotTester.Robot.LoadCommand(new WestCommand());
@@ -192,7 +214,6 @@ namespace AssignmentTest
             Assert.AreEqual(robotTester.Robot.X, 1);
             Assert.AreEqual(robotTester.Robot.Y, 2);
             Assert.AreEqual(robotTester.Robot.IsPowered, false);
-
         }
     }
 }
