@@ -160,8 +160,9 @@ namespace AssignmentTest
             Assert.AreEqual(testRobot.LoadCommand(new OnCommand()), false);
         }
         [TestMethod]
-        public void RobotTesterTest(){
-            Robot robot =new(6);
+        public void RobotTesterTest()
+        {
+            Robot robot = new(6);
 
             robot.LoadCommand(new WestCommand());
             robot.LoadCommand(new OnCommand());
