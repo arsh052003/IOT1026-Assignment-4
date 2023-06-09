@@ -88,27 +88,28 @@ public class Robot
 
 public class RobotTester
 {
-    private Robot _robot;
+    public Robot Robot { get; set; }
+    //private Robot _robot;
     //     // to avoid null warning
     private String? _userCommand;
     private IRobotCommand? _command;
 
     public RobotTester()
     {
-        _robot = new Robot();
+        Robot = new Robot();
     }
     public RobotTester(Robot robot)
     {
-        _robot = robot;
+        Robot = robot;
     }
     public void Giveinstructions()
     {
-        Console.WriteLine("Give " + _robot.NumCommands + " commands to the robot. Possible commands are: ");
+        Console.WriteLine("Give " + Robot.NumCommands + " commands to the robot. Possible commands are: ");
         Console.WriteLine("on\noff\nnoth\nsouth\neast\nwest");
         //Console.ReadLine();
-        Console.WriteLine(_robot.NumCommands);
-        int count = _robot.NumCommands;
-        for (var i = 1; i <= _robot.NumCommands; i++)
+        Console.WriteLine(Robot.NumCommands);
+        int count = Robot.NumCommands;
+        for (var i = 1; i <= Robot.NumCommands; i++)
         {
             Console.Write($"Assign Command #" + i + ": ");
 
@@ -147,13 +148,13 @@ public class RobotTester
                     continue; // Skip loading the command
             }
 
-            _robot.LoadCommand(_command);
+            Robot.LoadCommand(_command);
 
         }
     }
 
     public void ExecuteCommands()
     {
-        _robot.Run();
+        Robot.Run();
     }
 }
