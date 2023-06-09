@@ -1,6 +1,7 @@
 [![formatting](https://github.com/arsh052003/IOT1026-Assignment-4/actions/workflows/formatting.yml/badge.svg)](https://github.com/arsh052003/IOT1026-Assignment-4/actions/workflows/formatting.yml)
 [![ci](https://github.com/arsh052003/IOT1026-Assignment-4/actions/workflows/ci.yml/badge.svg)](https://github.com/arsh052003/IOT1026-Assignment-4/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/arsh052003/IOT1026-Assignment-4/branch/main/graph/badge.svg?token=K5SWAZLGZ1)](https://codecov.io/gh/arsh052003/IOT1026-Assignment-4)
+
 <img width="508" alt="Screen Shot 2023-06-10 at 03 15 21" src="https://github.com/arsh052003/IOT1026-Assignment-4/assets/122691385/d40c5949-bcb4-455c-a332-0787f5431aaf">
 
 This projects contains a Robot class represents a robot with properties such as its position, power state, and the ability to store and execute commands. This class includes a default constructor(sets to max number of commands as 6) and another constructor that take int paramater to allow specifying the maximum number of commands the robot can store. The Run method with executes the loaded commands on the robot by iterating over the _commands array and calling the Run method and display robot for each command. The LoadCommand will insert a command into the robot by adding it to the _commands array. Returns true if the command was successfully loaded, or false if not able to.
